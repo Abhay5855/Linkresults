@@ -6,13 +6,13 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
-		"lint": "eslint --fix --ext .ts,.tsx ./src",
+		"lint": "eslint --fix ./src",
 		"preview": "vite preview",
 		"prepare": "husky install"
 	},
 	"lint-staged": {
 		"**/*.{js,jsx,ts,tsx}": [
-			"pnpm run lint"
+			"eslint --fix"
 		]
 	},
 	"dependencies": {
