@@ -10,13 +10,11 @@
 		"preview": "vite preview",
 		"prepare": "husky install"
 	},
-
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "pnpm run lint"
-    ]
-  },
-  
+	"lint-staged": {
+		"**/*.{js,jsx,ts,tsx}": [
+			"pnpm run lint"
+		]
+	},
 	"dependencies": {
 		"flowbite-react": "^0.10.2",
 		"react": "^18.3.1",
