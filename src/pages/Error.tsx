@@ -1,11 +1,6 @@
 import { Link, useRouteError } from 'react-router-dom';
 import notfound from '../assets/images/notfound.svg';
-
-interface RouteError {
-	status?: number;
-	statusText?: string;
-	message?: string;
-}
+import { RouteError } from '../types';
 
 export default function ErrorPage(): JSX.Element {
 	const error = useRouteError() as RouteError;
