@@ -5,10 +5,16 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: '#007BFF',
+				primary: '#6941C6',
+				secondary: '6941C6',
 				border: '#707d86',
-				focus: '#66b2ff',
-				hover: '#66b2ff',
+				focus: '#7A59D8',
+				hover: '#5B36B0',
+				text: '#F9F5FF',
+			},
+
+			boxShadow: {
+				custom: '0 0 10px 0 rgba(0, 0, 0, 0.1)',
 			},
 		},
 	},
