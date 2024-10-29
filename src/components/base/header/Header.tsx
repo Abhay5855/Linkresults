@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { ButtonWrapper } from '../button/Button';
+import { Sparkles } from 'lucide-react';
 
 const Header: FC = () => {
 	return (
 		<>
-			<nav className='fixed px-6 top-0 z-50 w-full shadow-custom bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700'>
+			<nav className='fixed px-2 sm:px-6 top-0 z-50 w-full shadow-custom bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700'>
 				<div className='px-3 py-3'>
 					<div className='flex items-center justify-between'>
 						<div className='flex items-center justify-start rtl:justify-end'>
@@ -31,28 +32,30 @@ const Header: FC = () => {
 									></path>
 								</svg>
 							</button>
-							<Link to='https://flowbite.com' className='flex ms-2 md:me-24'>
-								<img
-									src='https://flowbite.com/docs/images/logo.svg'
-									className='h-8 me-3'
-									alt='FlowBite Logo'
-								/>
-								<span className='self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white'>
+							<Link
+								to='https://flowbite.com'
+								className='flex ms-2 gap-2 md:me-24'
+							>
+								<Sparkles className='w-8 h-8 text-primary' />
+								<span className='self-center text-xl font-bold sm:text-2xl text-primary whitespace-nowrap dark:text-white'>
 									PostWiz
 								</span>
 							</Link>
 						</div>
 						<div className='flex items-center gap-4'>
-							<ButtonWrapper
-								color='primary'
-								size='md'
-								onClick={() => console.log('click')}
-							>
-								Sign In
-							</ButtonWrapper>
-							<ButtonWrapper color='primary' size='md'>
-								Download
-							</ButtonWrapper>
+							<div className='hidden sm:flex gap-2'>
+								<ButtonWrapper
+									color='primary'
+									size='md'
+									onClick={() => console.log('click')}
+								>
+									Sign In
+								</ButtonWrapper>
+								<ButtonWrapper color='primary' size='md'>
+									Download
+								</ButtonWrapper>
+							</div>
+
 							<div className='flex items-center ms-3 flex-shrink-0'>
 								<div>
 									<button
@@ -81,6 +84,15 @@ const Header: FC = () => {
 												role='menuitem'
 											>
 												Settings
+											</Link>
+										</li>
+										<li>
+											<Link
+												to='#'
+												className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white'
+												role='menuitem'
+											>
+												Sign in
 											</Link>
 										</li>
 
