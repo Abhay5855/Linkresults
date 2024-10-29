@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { ButtonWrapper } from '../button/Button';
-import { Download } from 'lucide-react';
 
 const Header: FC = () => {
 	return (
@@ -52,7 +51,6 @@ const Header: FC = () => {
 								Sign In
 							</ButtonWrapper>
 							<ButtonWrapper color='primary' size='md'>
-								<Download size='sm' />
 								Download
 							</ButtonWrapper>
 							<div className='flex items-center ms-3 flex-shrink-0'>

@@ -1,5 +1,5 @@
 import { Link, useRouteError } from 'react-router-dom';
-import notfound from '../assets/images/notfound.svg';
+import notfound from '../../assets/images/notfound.svg';
 
 interface RouteError {
 	status?: number;
