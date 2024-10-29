@@ -16,11 +16,11 @@ React + Typescript, pnpm, Python (Backend), Flowbite, Lucid React, Tailwind CSS,
 
 - src  //Main folder
  - assets
-  - images   //toa dd images (only svg)
-  - icons    // add icons (only svg)
+    - images   //toa dd images (only svg)
+    - icons    // add icons (only svg)
 
 - components
- - base   // Add any reusable component here
+   - base   // Add any reusable component here
 
 - pages
   - folder  
