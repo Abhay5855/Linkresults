@@ -19,11 +19,22 @@ export default {
 				lg: '1024px',
 				xl: '1280px',
 			},
+			backgroundColor: {
+				btn: '#f4f2ee',
+			},
+
+			borderColor: {
+				border: '#e6e6e6',
+			},
+
+			borderRadius: {
+				b1: '0.8rem',
+			},
 
 			boxShadow: {
 				custom: '0 0 10px 0 rgba(0, 0, 0, 0.1)',
 			},
 		},
 	},
-	plugins: [flowbite.plugin()],
+	plugins: [flowbite.plugin(), '@tailwindcss/typography'],
 };
