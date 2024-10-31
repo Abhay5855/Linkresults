@@ -6,6 +6,7 @@ import EditorToolbarButton from '../post-editor/EditorToolbarButton';
 import { useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import ListItem from '@tiptap/extension-list-item';
+import PostPreview from './PostPreview';
 
 const PostScheduler: FC = () => {
 	const extensions = [StarterKit, ListItem];
@@ -31,7 +32,9 @@ const PostScheduler: FC = () => {
 							<EditorToolbarButton editor={editor} />
 							<PostEditor editor={editor} />
 						</div>
-						<div className='w-full'></div>
+						<div className='w-full'>
+							<PostPreview />
+						</div>
 					</div>
 				</ModalBody>
 			</Modal>
