@@ -5,30 +5,28 @@ import { InputFieldProps } from './InputField.types';
 const InputField: React.FC<InputFieldProps> = ({
   type = 'text',
   id,
-  label,
+  label = '',
   placeholder,
-  required = false,
+  required,
   pattern,
-  additionalClasses = '',
   icon: Icon,
   onChange,
-  disabled = false,
+  disabled,
   name,
   value,
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   return (
-    <div className={`mb-6 ${additionalClasses}`}>
-      {label && (
+    <>
         <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           {label}
         </label>
-      )}
+
       <div className="relative">
         {Icon && (
           <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -56,7 +54,7 @@ const InputField: React.FC<InputFieldProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
