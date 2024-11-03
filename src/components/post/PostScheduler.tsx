@@ -32,12 +32,11 @@ const PostScheduler: FC = () => {
 			</ModalHeader>
 			<ModalBody className='px-2 sm:px-6'>
 				<div className='flex flex-col lg:flex-row gap-20 sm:gap-8 h-[80vh] sm:h-[70vh]'>
-					{/* Editor Section */}
 					<div className='flex flex-col gap-4 w-full lg:w-3/5 h-full min-h-[300px] lg:min-h-0'>
 						<EditorToolbarButton editor={editor} />
 						<PostEditor editor={editor} />
 					</div>
-					{/* Preview Section */}
+
 					<div className='flex flex-col lg:flex-row gap-8 sm:gap-4  w-full lg:w-1/2 h-full min-h-[15rem] lg:min-h-0'>
 						<PostPreview />
 					</div>
@@ -47,17 +46,12 @@ const PostScheduler: FC = () => {
 			<ModalFooter className='flex w-full justify-end'>
 				<div className='ml-auto flex gap-2'>
 					<ButtonWrapper
-						className='w-24 sm:w-32 text-white font-semibold'
 						color='primary'
 						onClick={() => console.log('Save Post')}
 					>
 						Schedule Post
 					</ButtonWrapper>
-					<ButtonWrapper
-						className='w-24 sm:w-32 text-gray-500 font-semibold'
-						color='primary'
-						onClick={() => console.log('Cancel')}
-					>
+					<ButtonWrapper color='primary' onClick={() => console.log('Cancel')}>
 						Post on Linkedln
 					</ButtonWrapper>
 				</div>
