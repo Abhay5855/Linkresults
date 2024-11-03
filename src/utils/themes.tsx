@@ -26,3 +26,23 @@ export const buttonTheme: CustomFlowbiteTheme['button'] = {
 		xl: 'px-6 py-3 text-base',
 	},
 };
+
+export const inputTheme: CustomFlowbiteTheme['textInput'] = {
+  base: "flex",
+  field: {
+    base: "flex w-full",
+    input: {
+      base: "block w-full border disabled:cursor-not-allowed disabled:opacity-50",
+      sizes: {
+        sm: "p-2 text-sm",
+        md: "p-2.5 text-sm",
+        lg: "p-4 text-base"
+      },
+      colors: {
+        primary: "bg-white border-gray-300 text-gray-900 focus:border-primary focus:ring-primary",
+        success: "bg-white border-green-500 text-gray-900 focus:border-green-500 focus:ring-green-500",
+        error: "bg-white border-red-500 text-gray-900 focus:border-red-500 focus:ring-red-500",
+      },
+    },
+  }
+};
