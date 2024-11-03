@@ -42,9 +42,14 @@ p {
 	text-wrap: pretty;
 }
 
-.custom-editor .ProseMirror:focus {
+.ProseMirror:focus {
 	border: none !important;
 	outline: none !important;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+	.ProseMirror {
+		height: 15rem;
+	}
 }
 
 @media (prefers-reduced-motion: no-preference) {

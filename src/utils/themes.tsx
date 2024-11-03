@@ -3,10 +3,10 @@ import { CustomFlowbiteTheme } from 'flowbite-react';
 export const buttonTheme: CustomFlowbiteTheme['button'] = {
 	color: {
 		primary:
-			'bg-primary text-white capitalize text-text flex items-center flex-col justify-center w-full cursor-pointer focus:bg-focus hover:bg-hover ',
+			'bg-primary text-white capitalize text-text flex items-center flex-col justify-center w-full cursor-pointer focus:bg-focus hover:bg-hover whitespace-nowrap',
 
 		secondary:
-			'bg-secondary text-white capitalize text-text flex items-center justify-center flex-col w-full cursor-pointer focus:bg-focus hover:bg-hover',
+			'bg-secondary text-white capitalize text-text flex items-center justify-center flex-col w-full cursor-pointer focus:bg-focus hover:bg-hover whitespace-nowrap',
 
 		icon: 'bg-primary text-white capitalize text-text flex items-center gap-4 justify-center w-full cursor-pointer focus:bg-focus hover:bg-hover',
 	},

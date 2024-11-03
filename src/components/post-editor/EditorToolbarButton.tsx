@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { List, Italic, ListOrdered, Undo, Redo, Bold } from 'lucide-react';
 import { FileInput, Label } from 'flowbite-react';
 import { Editor } from '@tiptap/react';
+import { Link2 } from 'lucide-react';
 
 type ToolbarProps = {
 	editor: Editor | null;
@@ -9,15 +10,14 @@ type ToolbarProps = {
 
 const EditorToolbarButton: FC<ToolbarProps> = ({ editor }) => {
 	return (
-		<div className='flex items-center gap-5'>
+		<div className='flex flex-wrap items-center gap-3'>
 			<Label
 				htmlFor='dropzone-file'
-				className='bg-primary px-5 py-2 text-sm text-text capitalize flex items-center flex-col justify-center cursor-pointer focus:bg-focus hover:bg-hover '
+				className='bg-primary px-5 rounded-md py-2.5 text-base text-text capitalize flex items-center flex-col justify-center cursor-pointer focus:bg-focus hover:bg-hover whitespace-nowrap'
 			>
 				Upload a File
 				<FileInput id='dropzone-file' className='hidden' />
 			</Label>
-
 			<button
 				onClick={() => editor?.chain().focus().toggleBold().run()}
 				disabled={!editor?.can().chain().focus().toggleBold().run()}
@@ -85,6 +85,17 @@ const EditorToolbarButton: FC<ToolbarProps> = ({ editor }) => {
 				}`}
 			>
 				<Redo size='20' />
+			</button>
+			<button
+				onClick={() => editor?.chain().focus().redo().run()}
+				disabled={!editor?.can().chain().focus().redo().run()}
+				className={`${
+					editor?.isActive('redo')
+						? 'rounded-sm text-white bg-primary p-1 font-medium'
+						: 'rounded-sm bg-btn p-1 font-medium hover:brightness-90 grayscale'
+				}`}
+			>
+				<Link2 size='20' />
 			</button>
 		</div>
 	);
