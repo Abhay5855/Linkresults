@@ -3,7 +3,7 @@ import Header from '../../components/base/header/Header';
 import Sidebar from '../../components/base/sidebar/Sidebar';
 import MainContainer from '../../components/post/MainContainer';
 
-const Dashboard: FC = () => {
+const DashboardPage: FC = () => {
 	return (
 		<div>
 			<Header />
@@ -13,4 +13,4 @@ const Dashboard: FC = () => {
 	);
 };
 
-export default Dashboard;
+export default DashboardPage;
