@@ -1,18 +1,18 @@
 import { FC } from "react";
 import SignupSideBanner from "../../components/signup/SignupSideBanner";
-import MainContainer from "../../components/signup/MainContainer";
 import Logo from "../../components/base/logo/Logo";
+import SignupContainer from "../../components/signup/SignupContainer";
 
 const SignUp: FC = () => {
   return (
     <div className="flex flex-row min-h-screen">
-      <div className="flex-grow w-[66%] h-screen overflow-y-auto  flex flex-col">
-        <div className="w-full mt-10 px-8 sm:px-14 pb-5">
+      <main className="flex-grow w-[66%] h-screen overflow-y-auto  flex flex-col">
+        <header className="w-full mt-10 px-8 sm:px-14 pb-5">
           <Logo/>
-        </div>
+        </header>
         {/* Form Section */}
-        <MainContainer />
-      </div>
+        <SignupContainer />
+      </main>
       {/* sidebanner section  */}
       <SignupSideBanner />
     </div>

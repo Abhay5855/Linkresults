@@ -1,5 +1,11 @@
 import React, { FC, useState } from "react";
-import { ButtonWrapper } from "../../components/base/button/Button";
+import { ButtonWrapper } from "../base/button/Button";
+import {
+  CAPITAL_LETTER_PATTERN,
+  NUMBER_PATTERN,
+  SYMBOL_PATTERN,
+} from "../../helper";
+import { Link } from "react-router-dom";
 
 interface CheckBoxes {
   trigger: boolean;
@@ -10,21 +16,22 @@ interface CheckBoxes {
   };
 }
 
-interface SignUp {
+type SignUp = {
   email: string;
   password: string;
-}
+};
 
-const MainContainer: FC = () => {
+const SignupContainer: FC = () => {
   const [formData, setFormData] = useState<SignUp>({ email: "", password: "" });
-  const [error, setError] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
   const [checkBoxTrigger, setCheckBoxTrigger] = useState<CheckBoxes>({
     trigger: false,
     checkboxes: { checkbox1: false, checkbox2: false, checkbox3: false },
   });
-  const numberPattern = /\d/;
-  const symbolPattern = /[!@#$%^&*(),.?":{}|<>]/;
-  const capitalLetterPattern = /[A-Z]/;
+  const val =
+    checkBoxTrigger.checkboxes.checkbox1 ||
+    checkBoxTrigger.checkboxes.checkbox2 ||
+    checkBoxTrigger.checkboxes.checkbox3;
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key == " ") {
@@ -34,54 +41,32 @@ const MainContainer: FC = () => {
 
   const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
-    if (name === "email" && !value.includes("@")) {
-      setError("Not a valid Email!");
-      setFormData((prevData) => ({
-        ...prevData,
-        email: e.target.value,
-      }));
-    } else if (name === "email" && value.includes("@")) {
-      setError("");
-      setFormData((prevData) => ({
-        ...prevData,
-        email: e.target.value,
-      }));
+    if (name === "email") {
+      setFormData((prevData) => ({ ...prevData, email: value }));
+      setEmailError(value.includes("@") ? "" : "Not a valid Email!");
     }
-    if (name == "password") {
+    // Update password state and checkbox triggers
+    if (name === "password") {
       const checkboxes = {
         checkbox1: value.length >= 8,
-        checkbox2: capitalLetterPattern.test(value),
-        checkbox3: numberPattern.test(value) || symbolPattern.test(value),
+        checkbox2: CAPITAL_LETTER_PATTERN.test(value),
+        checkbox3: NUMBER_PATTERN.test(value) || SYMBOL_PATTERN.test(value),
       };
-      setCheckBoxTrigger((prevData) => ({
-        ...prevData,
-        trigger: value.length > 0,
-        checkboxes,
-      }));
-      setFormData((prevData) => ({
-        ...prevData,
-        password: e.target.value,
-      }));
+      setCheckBoxTrigger({ trigger: value.length > 0, checkboxes });
+      setFormData((prevData) => ({ ...prevData, password: value }));
     }
   };
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.target.value.length > 0) return;
-    const val =
-      checkBoxTrigger.checkboxes.checkbox1 ||
-      checkBoxTrigger.checkboxes.checkbox2 ||
-      checkBoxTrigger.checkboxes.checkbox3;
     setCheckBoxTrigger((prevData) => ({
       ...prevData,
       trigger: val,
     }));
   };
 
-  const disableButton: boolean =
-    !checkBoxTrigger.checkboxes.checkbox1 ||
-    !checkBoxTrigger.checkboxes.checkbox2 ||
-    !checkBoxTrigger.checkboxes.checkbox3 ||
-    error !== "" ||
+  const disableButton: boolean =!val ||
+    emailError !== "" ||
     formData.email === "" ||
     formData.password === "";
 
@@ -104,12 +89,16 @@ const MainContainer: FC = () => {
     }));
   };
   return (
-    <div className="flex-grow h-full mt-2 flex flex-col justify-center items-center tracking-tighter">
+    <section className="flex flex-col flex-grow h-full mt-2 justify-center items-center tracking-tighter">
       <form
-        className="w-full md:w-auto px-10 flex flex-col justify-center items-center tracking-tighter gap-y-9"
+        className="flex flex-col w-full md:w-auto px-10 justify-center items-center tracking-tighter gap-y-9"
         onSubmit={handleSubmit}
+        aria-labelledby="signup-form-title"
       >
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">
+        <h1
+          id="signup-form-title"
+          className="text-3xl sm:text-4xl font-bold text-gray-800"
+        >
           Let's get your account set up
         </h1>
         <div className="w-full flex flex-col tracking-normal">
@@ -129,9 +118,12 @@ const MainContainer: FC = () => {
               placeholder="john.doe@company.com"
               onKeyDown={handleKeyPress}
               onChange={handleOnchange}
+              aria-describedby="email-error"
               required
             />
-            <p className="text-xs text-red-700 font-semibold">{error}</p>
+            <p id="email-error" className="text-xs text-red-700 font-semibold">
+              {emailError}
+            </p>
           </div>
           <div className="mb-3 flex flex-col gap-1">
             <label
@@ -160,14 +152,16 @@ const MainContainer: FC = () => {
             />
           </div>
           {checkBoxTrigger.trigger && (
-            <div className="flex flex-col gap-1 mb-3 tracking-tighter">
+            <div
+              className="flex flex-col gap-1 mb-3 tracking-tighter"
+              aria-hidden={!checkBoxTrigger.trigger}
+            >
               <div className="flex items-center">
                 <input
                   checked={checkBoxTrigger.checkboxes.checkbox1}
                   disabled
                   id="default-checkbox"
                   type="checkbox"
-                  value=""
                   className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded-full  dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
@@ -183,7 +177,6 @@ const MainContainer: FC = () => {
                   disabled
                   id="default-checkbox1"
                   type="checkbox"
-                  value=""
                   className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded-full  dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
@@ -199,7 +192,6 @@ const MainContainer: FC = () => {
                   disabled
                   id="default-checkbox2"
                   type="checkbox"
-                  value=""
                   className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded-full  dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label
@@ -225,16 +217,21 @@ const MainContainer: FC = () => {
         <div className="flex flex-col gap-2 justify-center items-center tracking-normal">
           <p className="text-xs text-gray-500 ">
             By proceeding, you agree to{" "}
-            <a className="text-blue-700 underline">Our Terms of Service</a>
+            <Link to="#" className="text-blue-700 underline">
+              Our Terms of Service{" "}
+            </Link>
           </p>
           <hr className="border border-t-0 border-gray-500 w-full" />
           <p className="text-sm">
-            Already have an account? <a className="underline">Log in instead</a>
+            Already have an account?{" "}
+            <Link to="#" className="underline">
+              Log in instead
+            </Link>
           </p>
         </div>
       </form>
-    </div>
+    </section>
   );
 };
 
-export default MainContainer;
+export default SignupContainer;
