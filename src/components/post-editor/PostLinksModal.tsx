@@ -7,11 +7,9 @@ type ModalProps = {
 };
 const PostLinksModal: React.FC<ModalProps> = ({ setIsOpen, submitUrl }) => {
   const [url, setUrl] = useState("");
-  console.log("dddhhdh");
   const handleSubmit = () => {
     submitUrl(url);
     setUrl("");
-    return;
   };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">

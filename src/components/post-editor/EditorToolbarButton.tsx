@@ -101,7 +101,6 @@ const EditorToolbarButton: FC<ToolbarProps> = ({ editor }) => {
       </button>
       <button
         onClick={() => {
-          console.log("Running toggleOrderedList");
           editor?.chain().focus().toggleOrderedList().run();
         }}
         className={`${
